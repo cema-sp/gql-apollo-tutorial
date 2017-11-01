@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+import { ApolloProvider, createNetworkInterface, ApolloClient } from 'react-apollo';
+
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
 
-import { ApolloProvider, createNetworkInterface, ApolloClient } from 'react-apollo';
 
 import './styles/index.css';
 
@@ -14,9 +16,11 @@ const networkInterface = createNetworkInterface({
 const client = new ApolloClient({ networkInterface });
 
 ReactDOM.render(
-  <ApolloProvider client={ client }>
-    <App />
-  </ApolloProvider>,
+  <BrowserRouter>
+    <ApolloProvider client={ client }>
+      <App />
+    </ApolloProvider>
+  </BrowserRouter>,
   document.getElementById('root')
 );
 
